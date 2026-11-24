@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/CORPALIV-microservicios.iml" filepath="$PROJECT_DIR$/.idea/CORPALIV-microservicios.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ms-usuarios/ms-usuarios/src/main/main.iml" filepath="$PROJECT_DIR$/ms-usuarios/ms-usuarios/src/main/main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ms-donaciones/ms-donaciones/src/main/main2.iml" filepath="$PROJECT_DIR$/ms-donaciones/ms-donaciones/src/main/main2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ms-contactos/ms-contactos/src/main/main3.iml" filepath="$PROJECT_DIR$/ms-contactos/ms-contactos/src/main/main3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ms-usuarios/ms-usuarios/src/test/test.iml" filepath="$PROJECT_DIR$/ms-usuarios/ms-usuarios/src/test/test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ms-donaciones/ms-donaciones/src/test/test2.iml" filepath="$PROJECT_DIR$/ms-donaciones/ms-donaciones/src/test/test2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ms-contactos/ms-contactos/src/test/test3.iml" filepath="$PROJECT_DIR$/ms-contactos/ms-contactos/src/test/test3.iml" />
+    </modules>
+  </component>
+</project>
