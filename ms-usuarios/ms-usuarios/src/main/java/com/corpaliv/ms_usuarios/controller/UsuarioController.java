@@ -14,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UsuarioController {
 
-    private final UsuarioService usuarioService;
+    private final usuarioservice usuarioService;
 
     @GetMapping
     public List<Usuario> listar() {
