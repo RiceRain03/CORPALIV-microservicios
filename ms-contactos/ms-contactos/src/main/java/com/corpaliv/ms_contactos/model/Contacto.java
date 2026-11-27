@@ -34,4 +34,10 @@ public class Contacto {
 
     @Column(length = 1000)
     private String mensaje;
+
+    @Column(length = 30)
+    private String tipoColaboracion;
+
+    @Column(length = 20)
+    private String estado;
 }
