@@ -11,9 +11,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ContactoService {
 
+    public static final List<String> ESTADOS =
+            List.of("RECIBIDA", "EN_REVISION", "CONTACTADO", "CONCRETADO", "DESCARTADO");
+
     private final ContactoRepository contactoRepository;
 
     public Contacto crear(Contacto contacto) {
+        contacto.setEstado("RECIBIDA");
         return contactoRepository.save(contacto);
     }
 
@@ -34,6 +38,16 @@ public class ContactoService {
         existente.setEsEmpresa(datos.getEsEmpresa());
         existente.setAceptaTerminos(datos.getAceptaTerminos());
         existente.setMensaje(datos.getMensaje());
+        existente.setTipoColaboracion(datos.getTipoColaboracion());
+        return contactoRepository.save(existente);
+    }
+
+    public Contacto cambiarEstado(Long id, String estado) {
+        if (estado == null || !ESTADOS.contains(estado)) {
+            throw new IllegalArgumentException("Estado inválido: " + estado);
+        }
+        Contacto existente = obtenerPorId(id);
+        existente.setEstado(estado);
         return contactoRepository.save(existente);
     }
 

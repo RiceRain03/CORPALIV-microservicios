@@ -26,9 +26,7 @@ public class UsuarioService {
         }
         usuario.setCorreo(correoNormalizado);
         usuario.setClave(passwordEncoder.encode(usuario.getClave()));
-        if (usuario.getRol() == null || usuario.getRol().isBlank()) {
-            usuario.setRol("USER");
-        }
+                usuario.setRol("USER");
         Usuario guardado = usuarioRepository.save(usuario);
         String token = jwtService.generarToken(guardado.getCorreo(), guardado.getRol(), guardado.getNombre());
         return new AuthResponse(token, guardado.getId(), guardado.getNombre(), guardado.getCorreo(), guardado.getRol());
@@ -61,9 +59,7 @@ public class UsuarioService {
         if (datos.getFotoUrl() != null) {
             existente.setFotoUrl(datos.getFotoUrl());
         }
-        if (datos.getRol() != null && !datos.getRol().isBlank()) {
-            existente.setRol(datos.getRol());
-        }
+
         if (datos.getClave() != null && !datos.getClave().isBlank()) {
             existente.setClave(passwordEncoder.encode(datos.getClave()));
         }
