@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+import java.util.Map;
 
 import java.util.List;
 
@@ -36,6 +38,16 @@ public class ContactoController {
     @PutMapping("/{id}")
     public ResponseEntity<Contacto> actualizar(@PathVariable Long id, @Valid @RequestBody Contacto contacto) {
         return ResponseEntity.ok(contactoService.actualizar(id, contacto));
+    }
+
+    @PatchMapping("/{id}/estado")
+    public ResponseEntity<Contacto> cambiarEstado(@PathVariable Long id,
+                                                  @RequestBody Map<String, String> body) {
+        try {
+            return ResponseEntity.ok(contactoService.cambiarEstado(id, body.get("estado")));
+        } catch (IllegalArgumentException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        }
     }
 
     @DeleteMapping("/{id}")
