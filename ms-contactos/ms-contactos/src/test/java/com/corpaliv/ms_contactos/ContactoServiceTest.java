@@ -14,6 +14,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
 class ContactoServiceTest {
@@ -26,7 +27,7 @@ class ContactoServiceTest {
 
     @Test
     void crearYConsultarContacto() {
-        Contacto c = new Contacto(1L, "Empresa Inclusiva", 35, "2026-11-23", true, true, "Alianza RSE");
+                Contacto c = new Contacto(1L, "Empresa Inclusiva", 35, "2026-11-23", true, true, "Alianza RSE", "ALIANZA_RSE", "RECIBIDA");
         when(contactoRepository.save(any(Contacto.class))).thenReturn(c);
         when(contactoRepository.findById(1L)).thenReturn(Optional.of(c));
 
@@ -44,4 +45,19 @@ class ContactoServiceTest {
         assertDoesNotThrow(() -> contactoService.eliminar(1L));
         verify(contactoRepository).deleteById(1L);
     }
+    @Test
+    void cambiarEstadoValido() {
+        Contacto c = new Contacto(1L, "Ana", 30, "2026-11-23", false, true, "Hola", "OTRO", "RECIBIDA");
+        when(contactoRepository.findById(1L)).thenReturn(Optional.of(c));
+        when(contactoRepository.save(any(Contacto.class))).thenAnswer(i -> i.getArgument(0));
+
+        Contacto resultado = contactoService.cambiarEstado(1L, "CONTACTADO");
+
+        assertEquals("CONTACTADO", resultado.getEstado());
+    }
+
+    @Test
+    void cambiarEstadoInvalidoLanzaError() {
+        assertThrows(IllegalArgumentException.class, () -> contactoService.cambiarEstado(1L, "XYZ"));
+    }    
 }
